@@ -1,0 +1,62 @@
+<?php
+
+use App\Livewire\Admin\Brand\Index;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\ColorController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\DashBoardController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('dashboard', [DashBoardController::class, 'index']);
+
+    //Category route
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('category', 'index');
+        Route::get('category/create', 'create');
+        Route::post('category', 'store');
+        Route::get('category/{category}/edit', 'edit')->name('category.edit');
+        Route::put('category/{category}', 'update')->name('category.update');
+    });
+
+    //Product Route
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('products', 'index')->name('product.index');
+        Route::get('products/create', 'create');
+        Route::post('products', 'store')->name('product.store');
+        Route::get('products/{product}/edit', 'edit')->name('product.edit');
+        Route::put('products/{product}', 'update')->name('product.update');
+        Route::get('products/{product}/delete', 'delete')->name('product.delete');
+        Route::get('products/{productImage_id}/destroyImage', 'destroyImage')->name('product.deleteImage');
+    });
+
+    //Color route
+    Route::controller(ColorController::class)->group(function () {
+        Route::get('colors', 'index')->name('color.index');
+        Route::post('colors/create','create')->name('colors.create');
+    });
+
+    //Brand route
+    Route::get('brand', [BrandController::class, 'index'])->name('brand.index');
+});
