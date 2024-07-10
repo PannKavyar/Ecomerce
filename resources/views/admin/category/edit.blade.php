@@ -45,7 +45,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for=""> Status</label></br>
-                                <input type="checkbox" name="status" />
+                                {{-- <input type="checkbox" name="status" /> --}}
                                 <input type="checkbox" name="status" {{ $category->status == '1' ? 'checked' : '' }}>
 
                                 @error('image')

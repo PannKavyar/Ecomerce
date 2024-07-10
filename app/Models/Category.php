@@ -25,4 +25,9 @@ class Category extends Model
     {
         return $this->hasMany(Products::class, 'category_id');
     }
+
+    public function brands()
+    {
+        return $this->hasMany(Brand::class, 'category_id', 'id')->where('status', '1');
+    }
 }

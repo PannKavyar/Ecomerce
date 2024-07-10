@@ -10,6 +10,16 @@
             <form wire:submit.prevent="storeBrand">
                 <div class="modal-body">
                     <div class="mb-3">
+                        <label for="">Select Category</label>
+                        <select wire:model.defer="category_id" class="form-control">
+                            <option value="">---Select Category---</option>
+                            @foreach ($categories as $categoryItem)
+                                <option value="{{ $categoryItem->id }}">{{ $categoryItem->name }}</option>
+                            @endforeach
+                            @error('category_id')
+                                <small class="text-danger">{{ $message }}</small>
+                            @enderror
+                        </select>
                         <label>Brand Name</label>
                         <input type="text" wire:model.defer="name" class="form-control">
                         @error('name')
@@ -60,6 +70,16 @@
                 <form wire:submit.prevent="updateBrand">
                     <div class="modal-body">
                         <div class="mb-3">
+                            <label for="">Select Category</label>
+                            <select wire:model.defer="category_id" class="form-control">
+                                <option value="">---Select Category---</option>
+                                @foreach ($categories as $categoryItem)
+                                    <option value="{{ $categoryItem->id }}">{{ $categoryItem->name }}</option>
+                                @endforeach
+                                @error('category_id')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
+                            </select>
                             <label>Brand Name</label>
                             <input type="text" wire:model.defer="name" class="form-control">
                             @error('name')

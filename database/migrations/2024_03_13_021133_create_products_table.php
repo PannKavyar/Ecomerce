@@ -25,13 +25,14 @@ return new class extends Migration
             $table->integer('selling_price');
             $table->integer('quantity');
             $table->tinyInteger('trending')->default('0')->comment('1=trending,0=not-trending');
+            $table->tinyInteger('featured')->default('0')->comment('1=featured,0=not-featured');
             $table->tinyInteger('status')->default('0')->comment('1=status,0=visible');
 
             $table->string('meta_title')->nullable();
             $table->mediumText('meta_keyword')->nullable();
             $table->mediumText('meta_description')->nullable();
-            
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+
+            // $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();

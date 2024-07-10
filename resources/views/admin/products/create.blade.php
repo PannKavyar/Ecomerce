@@ -50,6 +50,14 @@
                                     aria-selected="false">
                                     Product Image
                                 </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="color-tab" data-bs-toggle="tab"
+                                    data-bs-target="#color-tab-pane" type="button" role="tab" aria-controls="image"
+                                    aria-selected="false">
+                                    Product Color
+                                </button>
+                            </li>
                         </ul>
 
                         <div class="tab-content" id="myTabContent">
@@ -149,6 +157,13 @@
 
                                     <div class="col-md-4">
                                         <div class="mb-3">
+                                            <label>Featured</label>
+                                            <input type="checkbox" name="featured" style="width: 15px; height:15px">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
                                             <label>Status</label>
                                             <input type="checkbox" name="status" style="width: 15px; height:15px">
                                         </div>
@@ -162,6 +177,37 @@
                                 <div class="mb-3">
                                     <label>Upload Product Images</label>
                                     <input type="file" name="image[]" multiple class="form-control">
+                                </div>
+                            </div>
+                            <div class="tab-pane fade border p-3" id="color-tab-pane" role="tabpanel"
+                                aria-labelledby="image-tab">
+                                <div class="mb-3">
+
+                                    <label>Select Color</label>
+                                    <div class="row">
+                                        @forelse ($colors as $colorItem)
+                                            <div class="col-md-3">
+                                                <div class="p-2 border mb-3">
+
+                                                    Color: <input type="checkbox" name="colors[{{ $colorItem->id }}]"
+                                                        value="{{ $colorItem->id }}" />{{ $colorItem->name }}
+                                                    <br />
+                                                    Quantity: <input type="number"
+                                                        name="colorquantity[{{ $colorItem->id }}]"
+                                                        style="width:70px ; border:1px solid" min="0" />
+                                                </div>
+
+                                            </div>
+
+                                        @empty
+                                            <div class="col-md-12">
+                                                <h3>
+                                                    No Color
+                                                </h3>
+                                            </div>
+                                        @endforelse
+
+                                    </div>
                                 </div>
                             </div>
                             <div>

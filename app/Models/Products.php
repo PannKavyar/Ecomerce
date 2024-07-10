@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Brand;
+use App\Models\ProductColor;
+use App\Models\ProductImage;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Products extends Model
 {
@@ -20,10 +23,9 @@ class Products extends Model
         'description',
         'original_price',
         'selling_price',
-
         'quantity',
         'trending',
-
+        'featured',
         'status',
         'meta_title',
         'meta_keyword',
@@ -42,5 +44,10 @@ class Products extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class, 'brand_id', 'id');
+    }
+
+    public function productColors()
+    {
+        return $this->hasMany(ProductColor::class, 'product_id', 'id');
     }
 }
