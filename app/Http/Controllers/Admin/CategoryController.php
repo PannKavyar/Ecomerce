@@ -52,36 +52,41 @@ class CategoryController extends Controller
         return view('admin.category.edit', compact('category'));
     }
 
-    public function update(CategoryFormRequest $request, $category)
-    {
-        $validatedData = $request->validated();
-        $category = Category::findOrFail($category);
+    public function update(CategoryFormRequest $request ,$category){
+        $validatedData =$request->validated();
 
-        $validatedData = $request->validated();
-        $category = new Category();
+        $category=Category::findOrFail($category);
+
         $category->name = $validatedData['name'];
         $category->slug = Str::slug($validatedData['slug']);
         $category->description = $validatedData['description'];
 
-        $uploadPath = 'uploads/category/';
-        if ($request->hasFile('image')) {
+       if($request->hasFile('image')){
 
-            $path = 'uploads/category/' . $category->image;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
-            $file = $request->file('image');
-            $ext = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $ext;
-            $file->move('uploads/category/', $filename);
-            $category->image = $uploadPath . $filename;
+        $uploadPath = 'uploads/category/';
+
+        $path = 'uploads/category/'.$category->image;
+        if(File::exists($path)){
+            File::delete($path);
         }
+         $file = $request->file('image');
+         $ext = $file->getClientOriginalExtension();
+         $filename = time().'.'.$ext;
+
+         $file->move('uploads/category/',$filename);
+
+         $category->image =$uploadPath. $filename;
+       }
         $category->meta_title = $validatedData['meta_title'];
-        $category->meta_keyword = $validatedData['meta_keyword'];
+        $category->meta_keyword= $validatedData['meta_keyword'];
         $category->meta_description = $validatedData['meta_description'];
-        $category->status = $request->status == true ? '1' : '0';
+        $category->status =$request->status == true ? '1':'0';
+
         $category->update();
 
-        return redirect('admin/category')->with('message', 'Category Updated Successfully');
+        return redirect('admin/category')->with('message','Category Updated Successfully');
+
+
     }
 }
+
