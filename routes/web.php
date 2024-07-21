@@ -33,6 +33,7 @@ use Illuminate\Routing\RouteRegistrar;
 // });
 Auth::routes();
 
+Route::get('search', [FrontendController::class, 'searchProducts']);
 Route::get('/', [FrontendController::class, 'index'])->name('frontend.index');
 Route::get('collections', [FrontendController::class, 'categories'])->name('frontend.category');
 Route::get('collections/{category_slug}', [FrontendController::class, 'products'])->name('frontend.product');
@@ -46,6 +47,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('dashboard', [DashBoardController::class, 'index']);
 
     Route::get('settings', [SiteSettingController::class, 'index']);
+    Route::post('settings', [SiteSettingController::class, 'store']);
 
     //Category route
     Route::controller(CategoryController::class)->group(function () {
