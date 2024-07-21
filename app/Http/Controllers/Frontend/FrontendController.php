@@ -15,13 +15,25 @@ class FrontendController extends Controller
         $sliders = Slider::where('status', '1')->get();
         // dd($sliders);
         // return $sliders;
-        $trendingProducts = Products::where('trending', '1')->latest()->take(10)->get();
-        return view('frontend.index', compact('sliders', 'trendingProducts'));
+        $trendingProducts = Products::where('trending', '1')->latest()->take(5)->get();
+        $newArrivalProducts = Products::latest()->take(5)->get();
+        $featuredProducts = Products::where('featured', '1')->latest()->take(5)->get();
+        return view('frontend.index', compact('sliders', 'trendingProducts', 'newArrivalProducts', 'featuredProducts'));
+    }
+
+    public function searchProducts(Request $request)
+    {
+        if ($request->search) {
+            $searchProducts = Products::where('name', 'LIKE', '%' . $request->search . '%')->latest()->paginate(11);
+            return view('frontend.pages.search', compact('searchProducts'));
+        } else {
+            return redirect()->back()->with('message', 'Empty Search');
+        }
     }
 
     public function newArrival()
     {
-        $newArrivalProducts = Products::latest()->take(5)->get();
+        $newArrivalProducts = Products::latest()->take(10)->get();
         return view('frontend.pages.new-arrival', compact('newArrivalProducts'));
     }
 

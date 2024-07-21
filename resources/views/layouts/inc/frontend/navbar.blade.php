@@ -4,13 +4,14 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
-                    <h5 class="brand-name">Ecommerce</h5>
+                    <h5 class="brand-name">{{ $appSetting->website_name ?? 'Ecommerce' }}</h5>
                 </div>
                 <div class="col-md-5 my-auto">
                     {{-- search box --}}
-                    <form role="search">
+                    <form role="search" action="{{ url('search') }}" method="GET">
                         <div class="input-group">
-                            <input type="search" placeholder="Search your product" class="form-control" />
+                            <input type="search" name="search" value="{{ Request::get('search') }}"
+                                placeholder="Search your product" class="form-control" />
                             <button class="btn bg-white" type="submit">
                                 <i class="fa fa-search"></i>
                             </button>
@@ -66,7 +67,8 @@
                                             <i class="fa fa-sign-out"></i> {{ __('Logout') }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
                                             @csrf
                                         </form>
                                     </li>
@@ -99,10 +101,10 @@
                         <a class="nav-link" href="{{ route('frontend.category') }}">All Categories</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">New Arrivals</a>
+                        <a class="nav-link" href="{{ url('new-arrivals') }}">New Arrivals</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Featured Products</a>
+                        <a class="nav-link" href="{{ url('featured-products') }}">Featured Products</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Electronics</a>
