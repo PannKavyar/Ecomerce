@@ -94,6 +94,25 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
     //Brand route
     Route::get('brand', [BrandController::class, 'index'])->name('brand.index');
+
+    //Slider route
+    Route::controller(SliderController::class)->group(function () {
+        Route::get('sliders', 'index')->name('slider.index');
+        Route::get('sliders/create', 'create')->name('slider.create');
+        Route::post('sliders/create', 'store')->name('slider.store');
+        Route::get('sliders/{slider}/edit', 'edit')->name('slider.edit');
+        Route::put('sliders/{slider}', 'update')->name('slider.update');
+        Route::get('sliders/{slider}/delete', 'destroy')->name('slider.delete');
+    });
+
+    Route::controller(App\Http\Controllers\Admin\UserController::class)->group(function () {
+        Route::get('/users', 'index');
+        Route::get('/users/create', 'create');
+        Route::post('/users', 'store');
+        Route::get('users/{userId}/edit', 'edit');
+        Route::put('/users/{userId}', 'update')->name('user.update');
+        Route::get('/users/{userId}', 'destory');
+    });
 });
 Route::middleware(['auth'])->group(function () {
     Route::get('wishlist', [WishListController::class, 'index'])->name('wishlist.index');
@@ -104,13 +123,3 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('thank-you', [FrontendController::class, 'thankyou'])->name('frontend.thankyou');
-
-//Slider route
-Route::controller(SliderController::class)->group(function () {
-    Route::get('sliders', 'index')->name('slider.index');
-    Route::get('sliders/create', 'create')->name('slider.create');
-    Route::post('sliders/create', 'store')->name('slider.store');
-    Route::get('sliders/{slider}/edit', 'edit')->name('slider.edit');
-    Route::put('sliders/{slider}', 'update')->name('slider.update');
-    Route::get('sliders/{slider}/delete', 'destroy')->name('slider.delete');
-});
