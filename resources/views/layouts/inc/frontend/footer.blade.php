@@ -58,7 +58,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <p class=""> &copy; 2022 - Funda of Web IT - Ecommerce. All rights reserved.</p>
+                    <p class=""> &copy; 2025- Ecommerce For Nowadays. All rights reserved.</p>
                 </div>
                 <div class="col-md-4">
                     <div class="social-media">

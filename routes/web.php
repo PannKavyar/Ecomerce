@@ -3,11 +3,13 @@
 use App\Livewire\Admin\Brand\Index;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Routing\RouteRegistrar;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ColorController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Admin\DashBoardController;
@@ -15,7 +17,6 @@ use App\Http\Controllers\Admin\SiteSettingController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\WishListController;
-use Illuminate\Routing\RouteRegistrar;
 
 /*
 |--------------------------------------------------------------------------
@@ -120,6 +121,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::get('orders', [OrderController::class, 'index'])->name('order.index');
     Route::get('orders/{orderId}', [OrderController::class, 'show'])->name('order.show');
+    Route::get('profile', [UserController::class, 'index']);
+    Route::post('profile',[UserController::class,'updateUserDetails']);
 });
 
 Route::get('thank-you', [FrontendController::class, 'thankyou'])->name('frontend.thankyou');
