@@ -25,7 +25,10 @@
                     @endif
                     <div class="card shadow">
                         <div class="card-header bg-primary">
-                            <h4 class="mb-0 text-white">User Details</h4>
+                            <h4 class="mb-0 text-white">User Details
+                                <a href="{{ url('change-password') }}" class="btn btn-warning float-end">Change
+                                    Password?</a>
+                            </h4>
                         </div>
                         <div class="card-body">
                             <form action="{{ url('profile') }}" method="POST">
@@ -65,8 +68,8 @@
                                         <div class="mb-3">
                                             <label for="">Address</label>
                                             <input type="textarea" name="address"
-                                                value="{{ Auth::user()->userDetail->address ?? '' }}"
-                                                class="form-control" rows="3" />
+                                                value="{{ Auth::user()->userDetail->address ?? '' }}" class="form-control"
+                                                rows="3" />
                                         </div>
                                     </div>
                                     <div class="col-md-12">

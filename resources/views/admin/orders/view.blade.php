@@ -17,13 +17,17 @@
 
                         <h4 class="text-primary">
                             <i class="fa fa-shopping-cart text-dark"></i>My Order Detail
-                            <a href="{{ route('adminorder.index') }}" class=" btn btn-danger float-end btn-sm mx-1">Back</a>
+                            <a href="{{ route('adminorder.index') }}" class=" btn btn-danger float-end btn-sm mx-1">
+                                <span class="fa fa-arrow-left"></span> Back</a>
                             <a href="{{ route('admin.generateinvoice', ['orderId' => $order->id]) }}"
-                                class=" btn btn-primary float-end btn-sm mx-1">Download
-                                Invoice</a>
-                            <a href="{{ route('admin.invoice', ['orderId' => $order->id]) }}"
-                                class=" btn btn-warning float-end btn-sm mx-1">View
-                                Invoice</a>
+                                class=" btn btn-primary float-end btn-sm mx-1">
+                                <span class="fa fa-download"></span> Download Invoice</a>
+                            <a href="{{ route('admin.invoice', ['orderId' => $order->id]) }}" target="_blank"
+                                class=" btn btn-warning float-end btn-sm mx-1">
+                                <span class="fa fa-eye"></span> View Invoice</a>
+                            <a href="{{ url('admin/invoice/' . $order->id . '/mail') }}" target="_blank"
+                                class=" btn btn-info float-end btn-sm mx-1">
+                                <span class="fa fa-eye"></span> Send Invoice Via Mail</a>
 
                         </h4>
                         <hr>

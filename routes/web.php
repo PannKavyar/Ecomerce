@@ -91,6 +91,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
         Route::get('invoice/{orderId}', 'viewInvoice')->name('admin.invoice');
         Route::get('invoice/{orderId}/generate', 'generateInvoice')->name('admin.generateinvoice');
+        Route::get('invoice/{orderId}/mail', 'mailInvoice');
     });
 
     //Brand route
@@ -123,6 +124,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('orders/{orderId}', [OrderController::class, 'show'])->name('order.show');
     Route::get('profile', [UserController::class, 'index']);
     Route::post('profile',[UserController::class,'updateUserDetails']);
+    Route::get('change-password',[UserController::class,'passwordCreate']);
+    Route::post('change-password',[UserController::class,'changePassword']);
 });
 
 Route::get('thank-you', [FrontendController::class, 'thankyou'])->name('frontend.thankyou');
