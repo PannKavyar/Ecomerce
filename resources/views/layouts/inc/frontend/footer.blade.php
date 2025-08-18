@@ -65,17 +65,29 @@
                         Get Connected:
                         {{ $appSetting->phone1 ?? 'phone 1' }}
 
-                        @if ($appSetting->facebook)
+                        @if (optional($appSetting)->facebook)
                             <a href="{{ $appSetting->facebook }}"><i class="fa fa-facebook"></i></a>
                         @endif
 
-                        @if ($appSetting->twitter)
+
+                        {{-- @if ($appSetting->twitter)
+                            <a href="{{ $appSetting->twitter }}"><i class="fa fa-twitter"></i></a>
+                        @endif --}}
+                        @if (optional($appSetting)->twitter)
                             <a href="{{ $appSetting->twitter }}"><i class="fa fa-twitter"></i></a>
                         @endif
-                        @if ($appSetting->instagram)
+
+                        {{-- @if ($appSetting->instagram)
+                            <a href="{{ $appSetting->instagram }}"><i class="fa fa-instagram"></i></a>
+                        @endif --}}
+                        @if (optional($appSetting)->instagram)
                             <a href="{{ $appSetting->instagram }}"><i class="fa fa-instagram"></i></a>
                         @endif
-                        @if ($appSetting->youtube)
+
+                        {{-- @if ($appSetting->youtube)
+                            <a href="{{ $appSetting->youtube }}"><i class="fa fa-youtube"></i></a>
+                        @endif --}}
+                        @if (optional($appSetting)->youtube)
                             <a href="{{ $appSetting->youtube }}"><i class="fa fa-youtube"></i></a>
                         @endif
                     </div>

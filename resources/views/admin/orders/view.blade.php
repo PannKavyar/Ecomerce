@@ -25,7 +25,7 @@
                             <a href="{{ route('admin.invoice', ['orderId' => $order->id]) }}" target="_blank"
                                 class=" btn btn-warning float-end btn-sm mx-1">
                                 <span class="fa fa-eye"></span> View Invoice</a>
-                            <a href="{{ url('admin/invoice/' . $order->id . '/mail') }}" target="_blank"
+                            <a href="{{ url('admin/invoice/' . $order->id . '/mail') }}" 
                                 class=" btn btn-info float-end btn-sm mx-1">
                                 <span class="fa fa-eye"></span> Send Invoice Via Mail</a>
 

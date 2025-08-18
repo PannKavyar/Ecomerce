@@ -38,6 +38,9 @@ class InvoiceOrderMailable extends Mailable
     {
         return new Content(
             view: 'admin.invoice.generate-invoice',
+            with: [
+                'order' => $this->order,
+            ],
         );
     }
 
