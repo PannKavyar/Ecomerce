@@ -1,25 +1,25 @@
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <ul class="nav">
-        <li class="nav-item">
-            <a class="nav-link" href="index.html">
+        <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
+            <a class="nav-link" href={{ url('admin/dashboard') }}>
                 <i class="mdi mdi-home menu-icon"></i>
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('adminorder.index') }}">
+            <a class="nav-link" href="{{ url('adminorder/index') }}">
                 <i class="mdi mdi-view-headline menu-icon"></i>
                 <span class="menu-title">Orders</span>
             </a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false"
-                aria-controls="ui-basic">
-                <i class="mdi mdi-circle-outline menu-icon"></i>
+        <li class="nav-item {{ Request::is('admin/category') ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#category"
+                aria-expanded="{{ Request::is('admin/dashboard') ? 'true' : 'false' }}">
+                <i class="mdi mdi-view-list menu-icon"></i>
                 <span class="menu-title">Category</span>
                 <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="ui-basic">
+            <div class="collapse" id="category">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ url('admin/category') }}">Category</a>
                     </li>
@@ -65,8 +65,8 @@
             </a>
             <div class="collapse" id="auth">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('users/create') }}"> Add User</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ url('users') }}"> View Users</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('admin/users/create') }}"> Add User</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ url('admin/users') }}"> View Users</a></li>
                 </ul>
             </div>
         </li>

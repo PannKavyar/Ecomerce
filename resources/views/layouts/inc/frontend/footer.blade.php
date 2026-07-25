@@ -47,7 +47,7 @@
                     </div>
                     <div class="mb-2">
                         <a href="" class="text-white">
-                            <i class="fa fa-envelope"></i> {{ $appSetting->eamil1 ?? 'email1' }}
+                            <i class="fa fa-envelope"></i> {{ $appSetting->email1 ?? 'email1' }}
                         </a>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <p class=""> &copy; 2025- Ecommerce For Nowadays. All rights reserved.</p>
+                    <p class=""> &copy; 2025-{{ date('Y') }} Ecommerce For Nowadays. All rights reserved.</p>
                 </div>
                 <div class="col-md-4">
                     <div class="social-media">
